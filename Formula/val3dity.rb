@@ -1,8 +1,8 @@
 class Val3dity < Formula
   desc "Validation of 3D geometric primitives according to ISO19107"
   homepage "https://github.com/tudelft3d/val3dity"
-  url "https://github.com/tudelft3d/val3dity/archive/2.2.0.tar.gz"
-  sha256 "0a98eb8c963fc6474def13723b4489ecc6a352d94c57a5baa38e53f6fea84c90"
+  url "https://github.com/tudelft3d/val3dity/archive/2.3.0.tar.gz"
+  sha256 "34618040314e992a4977720b054cb6eb360a33511b31fddc60898f78ae76cf36"
 
   depends_on "cmake" => :build
   depends_on "cgal"
