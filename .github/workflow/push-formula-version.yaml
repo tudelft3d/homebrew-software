@@ -1,0 +1,57 @@
+name: Brew push version-specific formula
+
+on: [push]
+
+jobs:
+  push_homebrew_version:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Check for version update and grab variables
+      if: contains(github.event.head_commit.message, 'https://github.com/mislav/bump-homebrew-formula-action')
+      run: echo "FOUND_VERSION=true" >> $GITHUB_ENV
+      
+    - name: Grab formula name and version
+      if: ${{ env.FOUND_VERSION == 'true' }}
+      uses: jungwinter/split@v2
+      id: split
+      with:
+        msg: ${{ github.event.head_commit.message }}
+        
+    - name: Make version string modifiable
+      if: ${{ env.FOUND_VERSION == 'true' }}
+      uses: ASzc/change-string-case-action@v2
+      id: formula
+      with:
+        string: ${{ steps.split.outputs._1 }}
+        
+    - name: Remove dots from version number
+      if: ${{ env.FOUND_VERSION == 'true' }}
+      uses: jungwinter/split@v2
+      id: ver
+      with:
+        msg: ${{ steps.split.outputs._3 }}
+        separator: '.'
+            
+    - name: Create version-specific .rb from the latest commit
+      if: ${{ env.FOUND_VERSION == 'true'}}
+      run: |
+        cp "Formula/${{ steps.split.outputs._1 }}.rb" "Formula/${{ steps.split.outputs._1 }}@${{ steps.split.outputs._3 }}.rb"
+        
+    - name: Replace the new formula's header
+      if: ${{ env.FOUND_VERSION == 'true' }}
+      uses: jacobtomlinson/gha-find-replace@v2
+      with:
+          find: "class ${{ steps.formula.outputs.capitalized }} < Formula"
+          replace: "class ${{ steps.formula.outputs.capitalized }}AT${{ steps.ver.outputs._0 }}${{ steps.ver.outputs._1 }}${{ steps.ver.outputs._2 }} < Formula"
+          include: "Formula/${{ steps.split.outputs._1 }}@${{ steps.split.outputs._3 }}.rb"
+      
+    - name: Commit the new modified file
+      if: ${{ env.FOUND_VERSION == 'true'}}
+      run: |
+        git config --global user.name 'GitHub Action' 
+        git config --global user.email 'action@github.com'
+        git add -A
+        git commit -m '[Automated commit] push version-specific brew formula for ${{ steps.split.outputs._1 }} version ${{ steps.split.outputs._3 }}'
+        git push
