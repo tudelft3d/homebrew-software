@@ -1,4 +1,4 @@
-class Prepair < Formula
+class Pprepair < Formula
   desc "validation and automatic repair of planar partitions"
   homepage "https://github.com/tudelft3d/pprepair"
   url "https://github.com/tudelft3d/pprepair/archive/refs/tags/v1.0.tar.gz"
