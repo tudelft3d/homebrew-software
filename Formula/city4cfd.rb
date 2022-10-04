@@ -6,6 +6,8 @@ class City4cfd < Formula
 
   depends_on "cmake" => :build
   depends_on "cgal"
+  depends_on "eigen"
+  depends_on "libomp"
 
   def install
     system "cmake", ".", *std_cmake_args
