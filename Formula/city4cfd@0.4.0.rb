@@ -7,6 +7,7 @@ class City4cfdAT040 < Formula
   depends_on "cmake" => :build
   depends_on "cgal"
   depends_on "eigen"
+  depends_on "gdal"
   depends_on "libomp"
 
   def install
