@@ -1,8 +1,8 @@
 class Prepair < Formula
   desc "repair invalid polygons according to ISO19107"
   homepage "https://github.com/tudelft3d/prepair"
-  url "https://github.com/tudelft3d/prepair/archive/refs/tags/v2.0.1.tar.gz"
-  sha256 "469405f2fdaf3058253a35dd67cd3ae4c122e4c3323036c90d1f6d952bcb636c"
+  url "https://github.com/tudelft3d/prepair/archive/refs/tags/v2.0.2.tar.gz"
+  sha256 "84ff4bd29caaae06a1b7bbac3d6cbc0b1eb0b599f7eb2295b5752feefb4a4633"
 
   depends_on "cmake" => :build
   depends_on "boost"
