@@ -1,12 +1,14 @@
-class Val3dity < Formula
-  desc "Validation of 3D geometric primitives according to ISO19107"
-  homepage "https://github.com/tudelft3d/val3dity"
-  url "https://github.com/tudelft3d/val3dity/archive/2.4.0.tar.gz"
-  sha256 "b69e8503258d4d8542a74f969ce75e861f4e3d4126f9ea0a324fca221642f936"
+class City4cfdAT042 < Formula
+  desc "Reconstruction of 3D city models tailored to urban CFD simulations"
+  homepage "https://github.com/tudelft3d/city4cfd"
+  url "https://github.com/tudelft3d/city4cfd/archive/0.4.2.tar.gz"
+  sha256 "dc59e69434b63aa2dd08eee6384ecb49f29580f8d3dab94308b9492206418512"
 
   depends_on "cmake" => :build
   depends_on "cgal"
-  depends_on "geos"
+  depends_on "eigen"
+  depends_on "gdal"
+  depends_on "libomp"
 
   def install
     system "cmake", ".", *std_cmake_args

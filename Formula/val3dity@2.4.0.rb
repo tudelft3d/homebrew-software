@@ -1,4 +1,4 @@
-class Val3dity < Formula
+class Val3dityAT240 < Formula
   desc "Validation of 3D geometric primitives according to ISO19107"
   homepage "https://github.com/tudelft3d/val3dity"
   url "https://github.com/tudelft3d/val3dity/archive/2.4.0.tar.gz"
