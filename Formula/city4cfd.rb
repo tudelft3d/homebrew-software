@@ -1,8 +1,8 @@
 class City4cfd < Formula
   desc "Reconstruction of 3D city models tailored to urban CFD simulations"
   homepage "https://github.com/tudelft3d/city4cfd"
-  url "https://github.com/tudelft3d/city4cfd/archive/0.4.3.tar.gz"
-  sha256 "c5fa160d20d4b6e9dfa77505e7f60af233b7e23e24b58f9aa3d3bc66e96e071b"
+  url "https://github.com/tudelft3d/city4cfd/archive/0.4.4.tar.gz"
+  sha256 "3d142aae9d5318f719845cadfff870ef8928aeba42b1c5ffcde59eec87919a2e"
 
   depends_on "cmake" => :build
   depends_on "cgal"
