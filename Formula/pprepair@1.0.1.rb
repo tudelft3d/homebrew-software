@@ -1,8 +1,8 @@
 class Pprepair < Formula
   desc "validation and automatic repair of planar partitions"
   homepage "https://github.com/tudelft3d/pprepair"
-  url "https://github.com/tudelft3d/pprepair/archive/refs/tags/v1.0.2.tar.gz"
-  sha256 "87aa272e3bcb591be4d317d93fca47cb830ca23a9d79f71ef2c4016d2fd50fbd"
+  url "https://github.com/tudelft3d/pprepair/archive/refs/tags/v1.0.1.tar.gz"
+  sha256 "ef1150be55be43662b1ab5cb7e1a0888ffcbf86a12a06db73056cf2973b67190"
 
   depends_on "cmake" => :build
   depends_on "boost"
