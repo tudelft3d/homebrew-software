@@ -1,8 +1,9 @@
 class Prepair < Formula
-  desc "repair invalid polygons according to ISO19107"
+  desc "Repair invalid polygons according to ISO19107"
   homepage "https://github.com/tudelft3d/prepair"
-  url "https://github.com/tudelft3d/prepair/archive/refs/tags/v3.0.tar.gz"
-  sha256 "205ca8c2328a54147e4c2d0c46af290b4910358a4ec5ff70a61e19cf70dd8192"
+  url "https://github.com/tudelft3d/prepair/archive/refs/tags/v3.0.1.tar.gz"
+  sha256 "1820ff1a6ff717648bb959b13d190bc0dbe52d3f2efe5301e187bf0f95fb9030"
+  license "GPL-3.0-or-later"
 
   depends_on "cmake" => :build
   depends_on "boost"
@@ -10,20 +11,13 @@ class Prepair < Formula
   depends_on "gdal"
 
   def install
-    system "cmake", ".", "-DCMAKE_BUILD_TYPE=Release", *std_cmake_args
-    system "make", "install"
+    system "cmake", "-S", ".", "-B", "build", "-DCMAKE_BUILD_TYPE=Release", *std_cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! For Homebrew/homebrew-core
-    # this will need to be a test that verifies the functionality of the
-    # software. Run the test with `brew test val3dity`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "false"
+    assert_match "MULTIPOLYGON",
+                 shell_output("#{bin}/prepair -w 'POLYGON((0 0, 0 10, 10 0, 10 10, 0 0))'")
   end
 end
